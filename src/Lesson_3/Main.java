@@ -1,3 +1,5 @@
+package Lesson_3;
+
 import java.util.Stack;
 
 public class Main {
@@ -24,8 +26,6 @@ public class Main {
             }
         }
 
-        if (!stack.isEmpty()) return false;
-
-        return true;
+        return stack.isEmpty();
     }
 }

@@ -1,3 +1,5 @@
+package Lesson_1;
+
 public class Human {
     private String name;
     private int year;
