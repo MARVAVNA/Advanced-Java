@@ -1,4 +1,4 @@
-package Lesson_4.FileSize;
+package Lesson_4.FolderSize;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,9 +32,9 @@ public class Main {
             while (thread.isAlive()) {
                 try {
                     Thread.sleep(100);
-                    double sizeKB = (double) FileSize.getSize() / 1024;
+                    double sizeKB = (double) FolderSize.getSize() / 1024;
                     double sizeMB = sizeKB / 1024;
-                    System.out.println(FileSize.getSize() + " bytes, " + String.format("%.2f", sizeKB) + " KB, "
+                    System.out.println(FolderSize.getSize() + " bytes, " + String.format("%.2f", sizeKB) + " KB, "
                             + String.format("%.2f", sizeMB) + " MB");
                 } catch (InterruptedException e) {
                     e.printStackTrace();

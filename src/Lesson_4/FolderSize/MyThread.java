@@ -1,4 +1,4 @@
-package Lesson_4.FileSize;
+package Lesson_4.FolderSize;
 
 class FileSizeThread implements Runnable {
 
@@ -10,6 +10,6 @@ class FileSizeThread implements Runnable {
 
     @Override
     public void run() {
-        FileSize.getSize(folderPath);
+        FolderSize.getSize(folderPath);
     }
 }

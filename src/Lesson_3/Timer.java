@@ -7,8 +7,8 @@ public class Timer {
     public static void main(String[] args) {
         Timer timer = new Timer();
 
-        int minutes = timer.getNumber(0, 60, "Please enter the number of minutes: ");
-        int seconds = timer.getNumber(0, 60, "Please enter the number of seconds: ");
+        byte minutes = timer.getNumber((byte) 0, (byte) 60, "Please enter the number of minutes: ");
+        byte seconds = timer.getNumber((byte) 0, (byte) 60, "Please enter the number of seconds: ");
 
         int allSeconds = 60 * minutes + seconds;
 
@@ -27,7 +27,7 @@ public class Timer {
         }
     }
 
-    private static void secondTimer(int minutes, int seconds) {
+    private static void secondTimer(byte minutes, byte seconds) {
         System.out.println(new StringBuilder()
                 .append(minutes < 10 ? "0" + minutes : minutes)
                 .append(":")
@@ -40,14 +40,15 @@ public class Timer {
         }
     }
 
-    private int getNumber(int min, int max, String text) {
+    private byte getNumber(byte min, byte max, String text) {
         Scanner scanner = new Scanner(System.in);
         int input = min - 1;
         boolean isNumber = true;
-        while (input < min || input > max) {
+        while (input < min || input >= max) {
             try {
                 if (!isNumber) {
                     scanner.next();
+                    isNumber = true;
                 }
                 System.out.print(text);
                 input = scanner.nextInt();
@@ -57,6 +58,6 @@ public class Timer {
             }
         }
 
-        return input;
+        return (byte) input;
     }
 }

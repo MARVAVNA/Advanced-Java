@@ -1,9 +1,9 @@
-package Lesson_4.FileSize;
+package Lesson_4.FolderSize;
 
 import java.io.File;
 import java.util.Objects;
 
-public class FileSize {
+public class FolderSize {
     private static long size;
 
     public static void getSize(String path) {
