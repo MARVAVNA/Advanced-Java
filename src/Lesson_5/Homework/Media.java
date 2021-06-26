@@ -9,7 +9,7 @@ public class Media {
     private static Clip clip;
 
     public static void play() {
-        File soundFile = new File("sound.wav");
+        File soundFile = new File("src/Lesson_5/Homework/files/sound.wav");
 
         boolean isProblem = false;
         AudioInputStream ais = null;
