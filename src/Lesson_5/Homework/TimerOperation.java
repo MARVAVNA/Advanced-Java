@@ -26,11 +26,13 @@ public class TimerOperation extends Thread {
             timerSecond.setText(String.valueOf(seconds));
 
             timerForm.setCurrentTimeTimer(timerMinute, timerSecond);
+            boolean isEnabled = true;
             for (int i = allSeconds; i > 0; i--) {
                 try {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                } catch (InterruptedException ignored) {
+                    isEnabled = false;
+                    break;
                 }
                 if (i % 60 == 0) {
                     seconds = 59;
@@ -45,8 +47,10 @@ public class TimerOperation extends Thread {
                 timerForm.setCurrentTimeTimer(timerMinute, timerSecond);
             }
 
-            timerForm.enableTimerControls();
-            Media.play();
+            if (isEnabled) {
+                timerForm.enableTimerControls();
+                Media.play();
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class TimerForm extends JFrame {
+    private TimerOperation timer;
     private JPanel timerPanel;
     private JLabel timerMainTimeLabel;
     private JLabel timerCurrentTimeLabel;
@@ -16,6 +17,7 @@ public class TimerForm extends JFrame {
     private JTextField timerMinute;
     private JTextField timerSecond;
     private JButton startButton;
+    private JButton resetButton;
 
     public static void init() {
         TimerForm timerForm = new TimerForm();
@@ -49,6 +51,17 @@ public class TimerForm extends JFrame {
         });
 
         startButton.addActionListener((actionListener) -> startTimer());
+        resetButton.addActionListener((actionListener) -> resetTimer());
+    }
+
+    private void resetTimer() {
+        timer.interrupt();
+        enableTimerControls();
+        setCurrentTimeTimer(new JTextField(), new JTextField());
+        setMainTimeTimer(new JTextField(), new JTextField());
+        timerSecond.setText("");
+        timerMinute.setText("");
+        resetButton.setEnabled(false);
     }
 
     private void initForm() {
@@ -62,6 +75,8 @@ public class TimerForm extends JFrame {
         timerMainTimeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         timerMainTimeLabel.setFont(new Font("Default", Font.PLAIN, 40));
         startButton = new JButton("Start");
+        resetButton = new JButton("Reset");
+        resetButton.setEnabled(false);
         timerMinute = new JTextField();
         Dimension dtm = new Dimension();
         dtm.setSize(100, 25);
@@ -152,9 +167,21 @@ public class TimerForm extends JFrame {
         gbc.weighty = 0;
         gbc.gridx = 0;
         gbc.gridy = 8;
-        gbc.gridwidth = 3;
-        gbc.gridheight = 1;
         timerPanel.add(startButton, gbc);
+
+        final JPanel spacer7 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 8;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        timerPanel.add(spacer7, gbc);
+
+        gbc = new GridBagConstraints();
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.gridx = 2;
+        gbc.gridy = 8;
+        timerPanel.add(resetButton, gbc);
 
         setSize(300, 300);
         setResizable(false);
@@ -248,7 +275,7 @@ public class TimerForm extends JFrame {
             Media.stop();
         }
 
-        TimerOperation timer = new TimerOperation(minute, second, this);
+        timer = new TimerOperation(minute, second, this);
         timer.start();
 
         disableTimerControls();
@@ -258,11 +285,13 @@ public class TimerForm extends JFrame {
         timerMinute.setEnabled(false);
         timerSecond.setEnabled(false);
         startButton.setEnabled(false);
+        resetButton.setEnabled(true);
     }
 
     public void enableTimerControls() {
         timerMinute.setEnabled(true);
         timerSecond.setEnabled(true);
         startButton.setEnabled(true);
+        resetButton.setEnabled(false);
     }
 }
